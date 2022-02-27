@@ -1,16 +1,19 @@
-﻿using System;
+﻿using ParkApi.Utils;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ParkApi.Controllers.NationalParkController.ViewModels
 {
-    public class NationalParkReq
+    public class TrailReq
     {
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
-        public string State { get; set; }
+        public double Distance { get; set; }
+        public DifficultyType Difficulty { get; set; }
         [Required]
-        public DateTime Established { get; set; }
+        public int NationalParkId { get; set; }
     }
 }
+

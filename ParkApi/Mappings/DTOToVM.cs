@@ -9,6 +9,7 @@ namespace ParkApi.Mappings
         public DTOToVM()
         {
             CreateMap<NationalParkDTO, NationalParkRes>();
+            CreateMap<TrailDTO, TrailRes>();
         }
     }
 }
