@@ -14,5 +14,6 @@ namespace DataAccess.Context
         }
 
         public DbSet<NationalPark> NationalPark { get; set; }
+        public DbSet<Trail> Trail { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace Services.Mappings
         public EntityToDTO()
         {
             CreateMap<NationalPark, NationalParkDTO>();
+            CreateMap<Trail, TrailDTO>();
         }
     }
 }

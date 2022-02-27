@@ -40,7 +40,9 @@ namespace ParkApi
                 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
             services.AddScoped<INationalParksRepository, NationalParksRepository>();
+            services.AddScoped<ITrailsRepository, TrailsRepository>();
             services.AddScoped<INationalParksManager, NationalParksManager>();
+            services.AddScoped<ITrailsManager, TrailsManager>();
 
             services.AddAutoMapper(typeof(DTOToEntity));
             services.AddAutoMapper(typeof(EntityToDTO));
