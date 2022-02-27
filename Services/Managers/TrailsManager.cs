@@ -72,7 +72,7 @@ namespace Services.Managers
 
                 if (_trailsRepository.TrailExists(trail.Name))
                 {
-                    throw new Exception("National Park Exists!");
+                    throw new Exception("Trail Exists!");
                 }
 
                 if (!_trailsRepository.UpdateTrail(trail))

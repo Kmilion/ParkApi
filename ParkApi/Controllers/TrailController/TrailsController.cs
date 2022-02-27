@@ -105,7 +105,7 @@ namespace ParkApi.Controllers
 
                 TrailRes trailRes = _mapper.Map<TrailRes>(_trailsManager.CreateTrail(trailDTO));
 
-                return CreatedAtRoute("GetNationalPark", new { id = trailRes.Id }, trailRes);
+                return CreatedAtRoute("GetTrail", new { id = trailRes.Id }, trailRes);
             }
             catch (Exception e)
             {
