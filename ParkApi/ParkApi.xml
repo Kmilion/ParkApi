@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ParkApi</name>
+    </assembly>
+    <members>
+        <member name="M:ParkApi.Controllers.NationalParksController.GetNationalParks">
+            <summary>
+            Get list of national parks.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ParkApi.Controllers.NationalParksController.GetNationalPark(System.Int32)">
+            <summary>
+            Get individual national park.
+            </summary>
+            <param name="id">National Park ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:ParkApi.Controllers.NationalParksController.CreateNationalPark(ParkApi.Controllers.NationalParkController.ViewModels.NationalParkReq)">
+            <summary>
+            Register a national park.
+            </summary>
+            <param name="nationalParkVM">National park data</param>
+            <returns></returns>
+        </member>
+        <member name="M:ParkApi.Controllers.NationalParksController.UpdateNationalPark(System.Int32,ParkApi.Controllers.NationalParkController.ViewModels.NationalParkReq)">
+            <summary>
+            Update a national park.
+            </summary>
+            <param name="id">National park ID</param>
+            <param name="nationalParkVM">National park data</param>
+            <returns></returns>
+        </member>
+        <member name="M:ParkApi.Controllers.NationalParksController.DeleteNationalPark(System.Int32)">
+            <summary>
+            Delete a national park.
+            </summary>
+            <param name="id">National park ID</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
