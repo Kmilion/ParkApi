@@ -21,6 +21,27 @@ namespace ParkWeb.Controllers
             });
         }
 
+        public async Task<IActionResult> Upsert(int? id)
+        {
+            NationalPark park = new NationalPark();
+
+            if (id == null)
+            {
+                // This will be true for Insert/Create
+                return View(park);
+            }
+
+            // Flow will come here for Update
+            park = await _npRepo.GetAsync(SD.NationalParksAPIPath, id.GetValueOrDefault());
+
+            if (park == null)
+            {
+                return NotFound();
+            }
+
+            return View(park);
+        }
+
         public async Task<IActionResult> GetAllNationalParks()
         {
             return Json(new { data = await _npRepo.GetAllAsync(SD.NationalParksAPIPath) });
