@@ -60,7 +60,12 @@ namespace DataAccess.Repository
 
         public bool UpdateNationalPark(NationalPark nationalPark)
         {
-            _db.NationalPark.Update(nationalPark);
+            NationalPark np = _db.NationalPark.FirstOrDefault(n => n.Id == nationalPark.Id);
+            np.Name = nationalPark.Name;
+            np.State = nationalPark.State;
+            np.Established = nationalPark.Established;
+
+            _db.NationalPark.Update(np);
             return Save();
         }
     }
