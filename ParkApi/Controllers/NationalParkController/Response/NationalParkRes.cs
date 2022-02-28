@@ -9,5 +9,6 @@ namespace ParkApi.Controllers.NationalParkController.ViewModels
         public string Name { get; set; }
         public string State { get; set; }
         public DateTime Established { get; set; }
+        public byte[] Picture { get; set; }
     }
 }

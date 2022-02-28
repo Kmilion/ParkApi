@@ -57,7 +57,6 @@ namespace ParkApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
-
         public IActionResult GetTrail(int id)
         {
             try
@@ -72,6 +71,37 @@ namespace ParkApi.Controllers
                 TrailRes parkVM = _mapper.Map<TrailRes>(parkDTO);
 
                 return Ok(parkVM);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Get list of trails in national park.
+        /// </summary>
+        /// <param name="nationalParkId">National park ID</param>
+        /// <returns></returns>
+        [HttpGet("GetTrailsInNationalPark/{nationalParkId:int}", Name = "GetTrailsInNationalPark")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ICollection<TrailRes>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
+        public IActionResult GetTrailsInNationalPark(int nationalParkId)
+        {
+            try
+            {
+                ICollection<TrailDTO> parkDTOList = _trailsManager.GetTrailsInNationalPark(nationalParkId);
+
+                if (parkDTOList == null)
+                {
+                    return NotFound();
+                }
+
+                ICollection<TrailRes> parkResList = _mapper.Map<ICollection<TrailRes>>(parkDTOList);
+
+                return Ok(parkResList);
             }
             catch (Exception e)
             {

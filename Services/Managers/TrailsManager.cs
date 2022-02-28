@@ -107,5 +107,19 @@ namespace Services.Managers
                 throw new Exception($"Something went wrong when deleting the record { trail.Id }");
             }
         }
+
+        public ICollection<TrailDTO> GetTrailsInNationalPark(int id)
+        {
+            if (!_nationalParksRepository.NationalParkExists(id))
+            {
+                throw new Exception("National park does not exist!");
+            }
+
+            ICollection<Trail> trailsList = _trailsRepository.GetTrailsInNationalPark(id);
+
+            ICollection<TrailDTO> trailsDTOList = _mapper.Map<ICollection<TrailDTO>>(trailsList);
+
+            return trailsDTOList;
+        }
     }
 }

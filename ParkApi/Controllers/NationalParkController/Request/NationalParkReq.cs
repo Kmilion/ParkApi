@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ParkApi.Controllers.NationalParkController.ViewModels
@@ -12,5 +13,6 @@ namespace ParkApi.Controllers.NationalParkController.ViewModels
         public string State { get; set; }
         [Required]
         public DateTime Established { get; set; }
+        public IFormFile Picture { get; set; }
     }
 }

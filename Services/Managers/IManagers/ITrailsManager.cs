@@ -14,5 +14,6 @@ namespace Services.Managers.IManagers
         void UpdateTrail(TrailDTO trailDTO);
         bool TrailExists(int id);
         void DeleteTrail(int id);
+        ICollection<TrailDTO> GetTrailsInNationalPark(int id);
     }
 }

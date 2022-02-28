@@ -6,6 +6,7 @@ using Services.DTOs;
 using Services.Managers.IManagers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace ParkApi.Controllers
 {
@@ -87,7 +88,7 @@ namespace ParkApi.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(NationalParkRes))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult CreateNationalPark([FromBody] NationalParkReq nationalParkVM)
+        public IActionResult CreateNationalPark([FromForm] NationalParkReq nationalParkVM)
         {
             try
             {
@@ -123,7 +124,7 @@ namespace ParkApi.Controllers
         [HttpPatch("{id:int}", Name = "UpdateNationalPark")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult UpdateNationalPark(int id, [FromBody] NationalParkReq nationalParkVM)
+        public IActionResult UpdateNationalPark(int id, [FromForm] NationalParkReq nationalParkVM)
         {
             try
             {
@@ -133,6 +134,14 @@ namespace ParkApi.Controllers
                 }
 
                 NationalParkDTO parkDTO = _mapper.Map<NationalParkDTO>(nationalParkVM);
+
+                if (nationalParkVM.Picture != null)
+                {
+                    using var ms = new MemoryStream();
+                    nationalParkVM.Picture.CopyTo(ms);
+                    var fileBytes = ms.ToArray();
+                    parkDTO.Picture = fileBytes;
+                }
 
                 _nationalParksManager.UpdateNationalPark(parkDTO);
 

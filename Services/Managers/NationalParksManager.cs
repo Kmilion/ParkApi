@@ -70,11 +70,6 @@ namespace Services.Managers
             {
                 NationalPark park = _mapper.Map<NationalPark>(parkDTO);
 
-                if (_nationalParkRepository.NationalParkExists(park.Name))
-                {
-                    throw new Exception("National Park Exists!");
-                }
-
                 if (!_nationalParkRepository.UpdateNationalPark(park))
                 {
                     throw new Exception($"Something went wrong when updating the record { parkDTO.Name }");

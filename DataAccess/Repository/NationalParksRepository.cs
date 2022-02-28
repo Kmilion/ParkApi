@@ -68,6 +68,7 @@ namespace DataAccess.Repository
             np.Name = nationalPark.Name;
             np.State = nationalPark.State;
             np.Established = nationalPark.Established;
+            np.Picture = nationalPark.Picture;
 
             _db.NationalPark.Update(np);
             return Save();
