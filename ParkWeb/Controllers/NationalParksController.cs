@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ParkWeb.Models;
 using ParkWeb.Repository.IRepository;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace ParkWeb.Controllers
@@ -40,6 +41,46 @@ namespace ParkWeb.Controllers
             }
 
             return View(park);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upsert(NationalPark park)
+        {
+            if (ModelState.IsValid)
+            {
+                var files = HttpContext.Request.Form.Files;
+
+                if (files.Count > 0)
+                {
+                    byte[] p1 = null;
+                    using (var fs1 = files[0].OpenReadStream())
+                    {
+                        using var ms1 = new MemoryStream();
+                        fs1.CopyTo(ms1);
+                        p1 = ms1.ToArray();
+                    }
+                    park.Picture = p1;
+                }
+                else
+                {
+                    var objFromDb = await _npRepo.GetAsync(SD.NationalParksAPIPath, park.Id);
+                    park.Picture = objFromDb.Picture;
+                }
+                if (park.Id == 0)
+                {
+                    await _npRepo.CreateAsync(SD.NationalParksAPIPath, park);
+                }
+                else
+                {
+                    await _npRepo.UpdateAsync(SD.NationalParksAPIPath + park.Id, park);
+                }
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(park);
+            }
         }
 
         public async Task<IActionResult> GetAllNationalParks()
