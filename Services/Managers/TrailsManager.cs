@@ -12,11 +12,13 @@ namespace Services.Managers
     public class TrailsManager : ITrailsManager
     {
         private readonly ITrailsRepository _trailsRepository;
+        private readonly INationalParksRepository _nationalParksRepository;
         private readonly IMapper _mapper;
 
-        public TrailsManager(ITrailsRepository trailsRepository, IMapper mapper)
+        public TrailsManager(ITrailsRepository trailsRepository, INationalParksRepository nationalParksRepository, IMapper mapper)
         {
             _trailsRepository = trailsRepository;
+            _nationalParksRepository = nationalParksRepository;
             _mapper = mapper;
         }
 
@@ -49,6 +51,11 @@ namespace Services.Managers
                     throw new Exception("Trail Exists!");
                 }
 
+                if (!_nationalParksRepository.NationalParkExists(trail.NationalParkId))
+                {
+                    throw new Exception("National park does not exist!");
+                }
+
                 if (!_trailsRepository.CreateTrail(trail))
                 {
                     throw new Exception($"Something went wrong when saving the record { traildDTO.Name }");
@@ -70,9 +77,9 @@ namespace Services.Managers
             {
                 Trail trail = _mapper.Map<Trail>(trailDTO);
 
-                if (_trailsRepository.TrailExists(trail.Name))
+                if (!_nationalParksRepository.NationalParkExists(trail.NationalParkId))
                 {
-                    throw new Exception("National Park Exists!");
+                    throw new Exception("National park does not exist!");
                 }
 
                 if (!_trailsRepository.UpdateTrail(trail))

@@ -11,6 +11,7 @@ namespace ParkApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "ParkOpenAPISpecTrails")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class TrailsController : Controller
     {
@@ -105,7 +106,7 @@ namespace ParkApi.Controllers
 
                 TrailRes trailRes = _mapper.Map<TrailRes>(_trailsManager.CreateTrail(trailDTO));
 
-                return CreatedAtRoute("GetNationalPark", new { id = trailRes.Id }, trailRes);
+                return CreatedAtRoute("GetTrail", new { id = trailRes.Id }, trailRes);
             }
             catch (Exception e)
             {

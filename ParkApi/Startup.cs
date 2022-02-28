@@ -51,12 +51,31 @@ namespace ParkApi
 
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("ParkApi",
+                options.SwaggerDoc("ParkOpenAPISpecNationalParks",
                     new Microsoft.OpenApi.Models.OpenApiInfo()
                     {
-                        Title = "ParkApi",
+                        Title = "ParkApi - National Parks",
                         Version = "v1",
                         Description = "National Parks Api",
+                        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+                        {
+                            Email = "gonzaloeceballos@gmail.com",
+                            Name = "Gonzalo Ceballos",
+                            Url = new Uri("https://github.com/Kmilion")
+                        },
+                        License = new Microsoft.OpenApi.Models.OpenApiLicense()
+                        {
+                            Name = "MIT License",
+                            Url = new Uri("https://es.wikipedia.org/wiki/Licencia_MIT")
+                        }
+                    });
+
+                options.SwaggerDoc("ParkOpenAPISpecTrails",
+                    new Microsoft.OpenApi.Models.OpenApiInfo()
+                    {
+                        Title = "ParkApi - Trails",
+                        Version = "v1",
+                        Description = "Trails Api",
                         Contact = new Microsoft.OpenApi.Models.OpenApiContact()
                         {
                             Email = "gonzaloeceballos@gmail.com",
@@ -90,7 +109,8 @@ namespace ParkApi
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/ParkApi/swagger.json", "ParkApi");
+                options.SwaggerEndpoint("/swagger/ParkOpenAPISpecNationalParks/swagger.json", "ParkApi - National Parks");
+                options.SwaggerEndpoint("/swagger/ParkOpenAPISpecTrails/swagger.json", "ParkApi - Trails");
                 options.RoutePrefix = "";
             });
 

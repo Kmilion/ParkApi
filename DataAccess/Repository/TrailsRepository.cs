@@ -61,7 +61,16 @@ namespace DataAccess.Repository
 
         public bool UpdateTrail(Trail trail)
         {
-            _db.Trail.Update(trail);
+            Trail t = _db.Trail.FirstOrDefault(n => n.Id == trail.Id);
+            if (!_db.Trail.Any(n => n.Name == trail.Name))
+            {
+                t.Name = trail.Name;
+            }
+            t.Distance = trail.Distance;
+            t.Difficulty = trail.Difficulty;
+            t.NationalParkId = trail.NationalParkId;
+
+            _db.Trail.Update(t);
             return Save();
         }
 
