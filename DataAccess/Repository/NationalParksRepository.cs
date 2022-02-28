@@ -61,6 +61,10 @@ namespace DataAccess.Repository
         public bool UpdateNationalPark(NationalPark nationalPark)
         {
             NationalPark np = _db.NationalPark.FirstOrDefault(n => n.Id == nationalPark.Id);
+            if (!_db.NationalPark.Any(n => n.Name == nationalPark.Name))
+            {
+                np.Name = nationalPark.Name;
+            }
             np.Name = nationalPark.Name;
             np.State = nationalPark.State;
             np.Established = nationalPark.Established;

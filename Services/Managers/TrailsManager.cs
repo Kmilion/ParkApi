@@ -70,11 +70,6 @@ namespace Services.Managers
             {
                 Trail trail = _mapper.Map<Trail>(trailDTO);
 
-                if (_trailsRepository.TrailExists(trail.Name))
-                {
-                    throw new Exception("Trail Exists!");
-                }
-
                 if (!_trailsRepository.UpdateTrail(trail))
                 {
                     throw new Exception($"Something went wrong when updating the record { trailDTO.Name }");
