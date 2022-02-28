@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkApi", "ParkApi\ParkApi.csproj", "{72A380C5-ABC2-4A2C-81D0-D3AFB999261B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkApi", "ParkApi\ParkApi.csproj", "{72A380C5-ABC2-4A2C-81D0-D3AFB999261B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{EDF36734-4375-4590-80D2-F3AEC265D3A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{EDF36734-4375-4590-80D2-F3AEC265D3A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{DEF0428C-3568-4D8B-963D-8A1E43677AA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{DEF0428C-3568-4D8B-963D-8A1E43677AA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkWeb", "ParkWeb\ParkWeb.csproj", "{F8D9FA85-05D1-4F80-A095-A53CDCD9597C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{DEF0428C-3568-4D8B-963D-8A1E43677AA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEF0428C-3568-4D8B-963D-8A1E43677AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEF0428C-3568-4D8B-963D-8A1E43677AA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8D9FA85-05D1-4F80-A095-A53CDCD9597C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8D9FA85-05D1-4F80-A095-A53CDCD9597C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8D9FA85-05D1-4F80-A095-A53CDCD9597C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8D9FA85-05D1-4F80-A095-A53CDCD9597C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

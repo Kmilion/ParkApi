@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace ParkApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/trails")]
     [ApiController]
     [ApiExplorerSettings(GroupName = "ParkOpenAPISpecTrails")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

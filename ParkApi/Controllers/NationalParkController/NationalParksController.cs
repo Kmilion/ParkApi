@@ -10,7 +10,7 @@ using System.IO;
 
 namespace ParkApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/nationalparks")]
     [ApiController]
     [ApiExplorerSettings(GroupName = "ParkOpenAPISpecNationalParks")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
