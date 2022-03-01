@@ -11,9 +11,13 @@ namespace ParkApi.Controllers.NationalParkController.ViewModels
         public string Name { get; set; }
         [Required]
         public double Distance { get; set; }
-        public string Difficulty { get; set; }
+        [Required]
+        public double Elevation { get; set; }
+        public DifficultyType Difficulty { get; set; }
         [Required]
         public int NationalParkId { get; set; }
+        public DateTime DateCreated { get; set; }
+
     }
 }
 

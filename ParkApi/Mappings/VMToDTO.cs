@@ -9,7 +9,7 @@ namespace ParkApi.Mappings
     {
         public VMToDTO()
         {
-            CreateMap<NationalParkReq, NationalParkDTO>().ForMember(x => x.Picture, opt => opt.Ignore());
+            CreateMap<NationalParkReq, NationalParkDTO>();
             CreateMap<TrailReq, TrailDTO>();
         }
     }
