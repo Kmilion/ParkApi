@@ -117,7 +117,7 @@ namespace ParkApi.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(TrailRes))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult CreateTrail([FromBody] TrailReq trailReq)
+        public IActionResult CreateTrail(TrailReq trailReq)
         {
             try
             {
@@ -153,7 +153,7 @@ namespace ParkApi.Controllers
         [HttpPatch("{id:int}", Name = "UpdateTrail")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult UpdateTrail(int id, [FromBody] TrailReq trailReq)
+        public IActionResult UpdateTrail(int id, TrailReq trailReq)
         {
             try
             {

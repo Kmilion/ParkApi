@@ -1,6 +1,10 @@
-﻿namespace ParkWeb.Repository.IRepository
+﻿
+
+using ParkWeb.Models;
+
+namespace ParkWeb.Repository.IRepository
 {
-    public interface ITrailRepository
+    public interface ITrailRepository : IRepository<Trail>
     {
     }
 }

@@ -69,6 +69,7 @@ namespace DataAccess.Repository
             t.Distance = trail.Distance;
             t.Difficulty = trail.Difficulty;
             t.NationalParkId = trail.NationalParkId;
+            t.Elevation = trail.Elevation;
 
             _db.Trail.Update(t);
             return Save();
