@@ -13,7 +13,7 @@ namespace ParkApi.Controllers
     [ApiController]
     [ApiExplorerSettings(GroupName = "ParkOpenAPISpecTrails")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public class TrailsController : Controller
+    public class TrailsController : ControllerBase
     {
         private readonly ITrailsManager _trailsManager;
         private readonly IMapper _mapper;

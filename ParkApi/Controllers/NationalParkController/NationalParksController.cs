@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ParkApi.Controllers.NationalParkController.ViewModels;
@@ -14,7 +15,7 @@ namespace ParkApi.Controllers
     [ApiController]
     [ApiExplorerSettings(GroupName = "ParkOpenAPISpecNationalParks")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public class NationalParksController : Controller
+    public class NationalParksController : ControllerBase
     {
         private readonly INationalParksManager _nationalParksManager;
         private readonly IMapper _mapper;
@@ -57,8 +58,8 @@ namespace ParkApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NationalParkRes))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Authorize]
         [ProducesDefaultResponseType]
-
         public IActionResult GetNationalPark(int id)
         {
             try
