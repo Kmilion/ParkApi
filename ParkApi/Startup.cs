@@ -88,6 +88,25 @@ namespace ParkApi
                             Url = new Uri("https://es.wikipedia.org/wiki/Licencia_MIT")
                         }
                     });
+
+                options.SwaggerDoc("ParkOpenAPISpecUsers",
+                    new Microsoft.OpenApi.Models.OpenApiInfo()
+                    {
+                        Title = "ParkApi - Users",
+                        Version = "v1",
+                        Description = "Users Api",
+                        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+                        {
+                            Email = "gonzaloeceballos@gmail.com",
+                            Name = "Gonzalo Ceballos",
+                            Url = new Uri("https://github.com/Kmilion")
+                        },
+                        License = new Microsoft.OpenApi.Models.OpenApiLicense()
+                        {
+                            Name = "MIT License",
+                            Url = new Uri("https://es.wikipedia.org/wiki/Licencia_MIT")
+                        }
+                    });
                 var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var cmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
                 options.IncludeXmlComments(cmlCommentsFullPath);
@@ -111,6 +130,8 @@ namespace ParkApi
             {
                 options.SwaggerEndpoint("/swagger/ParkOpenAPISpecNationalParks/swagger.json", "ParkApi - National Parks");
                 options.SwaggerEndpoint("/swagger/ParkOpenAPISpecTrails/swagger.json", "ParkApi - Trails");
+                options.SwaggerEndpoint("/swagger/ParkOpenAPISpecUsers/swagger.json", "ParkApi - Users");
+
                 options.RoutePrefix = "";
             });
 

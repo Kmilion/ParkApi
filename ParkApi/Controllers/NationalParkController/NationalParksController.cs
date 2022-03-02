@@ -58,7 +58,7 @@ namespace ParkApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NationalParkRes))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [Authorize]
+        //[Authorize]
         [ProducesDefaultResponseType]
         public IActionResult GetNationalPark(int id)
         {
