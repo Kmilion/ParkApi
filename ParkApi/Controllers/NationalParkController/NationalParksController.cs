@@ -11,9 +11,10 @@ using System.IO;
 
 namespace ParkApi.Controllers
 {
-    [Route("api/nationalparks")]
+    [Route("api/v{version:apiVersion}/nationalparks")]
+    //[Route("api/[controller]")]
     [ApiController]
-    [ApiExplorerSettings(GroupName = "ParkOpenAPISpecNationalParks")]
+    //[ApiExplorerSettings(GroupName = "ParkyOpenAPISpecNP")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class NationalParksController : ControllerBase
     {
@@ -58,7 +59,7 @@ namespace ParkApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NationalParkRes))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        //[Authorize]
+        [Authorize]
         [ProducesDefaultResponseType]
         public IActionResult GetNationalPark(int id)
         {

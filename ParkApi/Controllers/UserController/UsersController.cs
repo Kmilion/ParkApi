@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace ParkApi.Controllers.UserController
 {
     [Authorize]
-    [Route("api/users")]
+    [Route("api/v{version:apiVersion}/Users")]
+    //[Route("api/[controller]")]
     [ApiController]
-    [ApiExplorerSettings(GroupName = "ParkOpenAPISpecUsers")]
     public class UsersController : ControllerBase
     {
         private readonly IUserRepository _userRepo;
