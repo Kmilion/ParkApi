@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ParkWeb.Models;
 using ParkWeb.Models.ViewModels;
@@ -30,7 +31,7 @@ namespace ParkWeb.Controllers
 
         public async Task<IActionResult> Upsert(int? id)
         {
-            IEnumerable<NationalPark> npList = await _npRepo.GetAllAsync(SD.NationalParksAPIPath);
+            IEnumerable<NationalPark> npList = await _npRepo.GetAllAsync(SD.NationalParksAPIPath, HttpContext.Session.GetString("JWToken"));
 
             TrailsVM objVM = new TrailsVM()
             {
@@ -50,7 +51,7 @@ namespace ParkWeb.Controllers
             }
 
             // Flow will come here for Update
-            objVM.Trail = await _trailRepo.GetAsync(SD.TrailsAPIPath, id.GetValueOrDefault());
+            objVM.Trail = await _trailRepo.GetAsync(SD.TrailsAPIPath, id.GetValueOrDefault(), HttpContext.Session.GetString("JWToken"));
 
             if (objVM.Trail == null)
             {
@@ -68,17 +69,17 @@ namespace ParkWeb.Controllers
             {
                 if (obj.Trail.Id == 0)
                 {
-                    await _trailRepo.CreateAsync(SD.TrailsAPIPath, obj.Trail);
+                    await _trailRepo.CreateAsync(SD.TrailsAPIPath, obj.Trail, HttpContext.Session.GetString("JWToken"));
                 }
                 else
                 {
-                    await _trailRepo.UpdateAsync(SD.TrailsAPIPath + obj.Trail.Id, obj.Trail);
+                    await _trailRepo.UpdateAsync(SD.TrailsAPIPath + obj.Trail.Id, obj.Trail, HttpContext.Session.GetString("JWToken"));
                 }
                 return RedirectToAction("Index");
             }
             else
             {
-                IEnumerable<NationalPark> npList = await _npRepo.GetAllAsync(SD.NationalParksAPIPath);
+                IEnumerable<NationalPark> npList = await _npRepo.GetAllAsync(SD.NationalParksAPIPath, HttpContext.Session.GetString("JWToken"));
 
                 TrailsVM objVM = new TrailsVM()
                 {
@@ -95,12 +96,12 @@ namespace ParkWeb.Controllers
 
         public async Task<IActionResult> GetAllTrails()
         {
-            return Json(new { data = await _trailRepo.GetAllAsync(SD.TrailsAPIPath) });
+            return Json(new { data = await _trailRepo.GetAllAsync(SD.TrailsAPIPath, HttpContext.Session.GetString("JWToken")) });
         }
 
         public async Task<IActionResult> Delete(int id)
         {
-            if (await _trailRepo.DeleteAsync(SD.TrailsAPIPath, id))
+            if (await _trailRepo.DeleteAsync(SD.TrailsAPIPath, id, HttpContext.Session.GetString("JWToken")))
             {
                 return Json(new { success = true, message = "Delete successful" });
 

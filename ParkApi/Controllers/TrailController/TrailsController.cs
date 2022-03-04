@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ParkApi.Controllers.NationalParkController.ViewModels;
@@ -58,6 +59,7 @@ namespace ParkApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
+        [Authorize(Roles = "Admin")]
         public IActionResult GetTrail(int id)
         {
             try
