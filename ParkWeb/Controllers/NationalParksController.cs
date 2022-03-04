@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ParkWeb.Models;
 using ParkWeb.Repository.IRepository;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ParkWeb.Controllers
 {
+    [Authorize]
     public class NationalParksController : Controller
     {
         private readonly INationalParkRepository _npRepo;
@@ -23,6 +25,7 @@ namespace ParkWeb.Controllers
             });
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Upsert(int? id)
         {
             NationalPark park = new NationalPark();
@@ -84,11 +87,14 @@ namespace ParkWeb.Controllers
             }
         }
 
+        [HttpGet]
         public async Task<IActionResult> GetAllNationalParks()
         {
             return Json(new { data = await _npRepo.GetAllAsync(SD.NationalParksAPIPath, HttpContext.Session.GetString("JWToken")) });
         }
 
+        [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             if (await _npRepo.DeleteAsync(SD.NationalParksAPIPath, id, HttpContext.Session.GetString("JWToken")))

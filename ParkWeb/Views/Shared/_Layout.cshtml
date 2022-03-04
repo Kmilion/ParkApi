@@ -27,8 +27,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @if (httpAccesor.HttpContext.Session.GetString("JWToken") != null &&
-                        httpAccesor.HttpContext.Session.GetString("JWToken").ToString().Length > 0)
+                        @if (User.IsInRole("Admin") || User.IsInRole("test"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-controller="NationalParks" asp-action="Index">National Park</a>
@@ -36,6 +35,10 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-controller="Trails" asp-action="Index">Trails</a>
                             </li>
+                        }
+                        @if (httpAccesor.HttpContext.Session.GetString("JWToken") != null &&
+                        httpAccesor.HttpContext.Session.GetString("JWToken").ToString().Length > 0)
+                        {
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-controller="Home" asp-action="Logout">Logout</a>
                             </li>
@@ -56,6 +59,15 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @if (TempData["alert"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["alert"]
+                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
             @RenderBody()
         </main>
     </div>
